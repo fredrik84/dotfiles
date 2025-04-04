@@ -2,9 +2,8 @@
 IFS="
 "
 for row in $(cat files.txt); do
-  echo $row
-  src=$(echo $row | awk {'print $1'} | sed -e "s#^~#$HOME#")
-  dst=$(echo $row | awk {'print $2'} | sed -e "s#^~#$HOME#")
+  src=$(echo $row | awk {'print $2'} | sed -e "s#^~#$HOME#")
+  dst=$(echo $row | awk {'print $1'} | sed -e "s#^~#$HOME#")
   cp -f $src $dst
 done
 
