@@ -9,14 +9,14 @@ for plugin in $(cat schemas/vim-plugins.txt); do
   PLUGIN=$(basename $plugin)
   if test -f "$BASEDIR/$PLUGIN"; then
     echo "Installing $PLUGIN"
-    git clone $plugin "$BASEDIR/$PLUGIN"
+    git clone $plugin "$BASEDIR/$PLUGIN" &> /dev/null
   else
     echo "Updating $PLUGIN"
     (
       cd $BASEDIR/$PLUGIN;
-      git fetch
+      git fetch &> /dev/null
       BRANCH=$(git branch | tail -n1 | /usr/bin/cut -c '3-')
-      git pull origin $BRANCH
+      git pull origin $BRANCH &> /dev/null
     )
   fi
 done

@@ -1,0 +1,10 @@
+Host 10.80.20.10
+    User fredrik
+
+Host q???? !10.80.20.*
+    HostName            %h.baffinbay.network
+    User feriksson
+
+Host * !10.80.20.*
+    User feriksson
+

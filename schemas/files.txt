@@ -2,3 +2,4 @@ files/bash_profile ~/.bash_profile
 files/bashrc ~/.bashrc
 files/vimrc ~/.vimrc
 files/editorconfig ~/.editorconfig
+files/ssh_config ~/.ssh/config
