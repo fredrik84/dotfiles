@@ -1,0 +1,13 @@
+bitwarden
+chatgpt
+discord
+firefox
+ghostty
+github
+karabiner-elements
+messenger
+rectangle
+slack
+spotify
+tunnelblick
+wireshark
