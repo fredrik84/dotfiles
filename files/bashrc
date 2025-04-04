@@ -1,0 +1,69 @@
+#!/bin/bash
+# Git branch function
+parse_git_branch() {
+  local branch
+  branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null)
+  if [ -n "$branch" ]; then
+    echo " (${branch})"
+  fi
+}
+
+# Colors
+RED="\[\033[0;31m\]"
+GREEN="\[\033[0;32m\]"
+BLUE="\[\033[0;34m\]"
+YELLOW="\[\033[0;33m\]"
+MAGENTA="\[\033[0;35m\]"
+CYAN="\[\033[0;36m\]"
+RESET="\[\033[0m\]"
+
+# Final Prompt
+export PS1="${BLUE}[\t]${RESET} ${GREEN}\u@${YELLOW}\h${RESET}:${CYAN}\w${MAGENTA}\$(parse_git_branch)${RESET}$ "
+
+update_terminal_title() {
+  local branch
+  branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null)
+  if [ -n "$branch" ]; then
+    branch=" ($branch)"
+  fi
+  echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}${branch}\007"
+}
+
+# Call before each prompt
+PROMPT_COMMAND="builtin history -a;update_terminal_title"
+export HISTTIMEFORMAT="[%F %T] "
+
+# Fancy history with timestamps
+history() {
+  # You can still access the original with: builtin history
+  HISTTIMEFORMAT="%F %T " builtin history | awk '{
+    ts = $2 " " $3;
+    cmd_start = index($0, $4);
+    printf "[%s] %4s: %s\n", ts, $1, substr($0, cmd_start);
+  }'
+}
+
+# Auto complete for commands
+_update_ssh_known_hosts() {
+  awk '{print $1}' ~/.ssh/known_hosts 2>/dev/null | tr ',' '\n' | grep -vE '^\[|^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$'
+}
+
+_update_matteo_hosts() {
+  URL="http://api-gateway.matteo.ops-k8s1224.baffinbay.network/devices/v1/machines/"
+  curl -fs $URL | jq -r .[].fqdn 2> /dev/null
+}
+
+_hostlist() {
+  hosts=$((_update_ssh_known_hosts; _update_matteo_hosts) | sort -u)
+  echo "${hosts}" | tee ~/.hostlist
+}
+
+_hostlist_complete() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  COMPREPLY=( $(compgen -W "$(_hostlist | xargs)" -- "$cur") )
+}
+
+_host_tab_complete_commands="ssh scp sftp ping host"
+for _cmd in $_host_tab_complete_commands; do
+  complete -F _hostlist_complete $_cmd
+done
