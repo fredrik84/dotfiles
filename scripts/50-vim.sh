@@ -5,7 +5,7 @@ if test ! -f "$HOME/.vim"; then
   git clone git@github.com:fredrik84/vim-ide.git $HOME/.vim
 fi
 mkdir -p $BASEDIR
-for plugin in $(cat vim-plugins.txt); do
+for plugin in $(cat schemas/vim-plugins.txt); do
   PLUGIN=$(basename $plugin)
   if test -f "$BASEDIR/$PLUGIN"; then
     echo "Installing $PLUGIN"
