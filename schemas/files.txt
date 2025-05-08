@@ -3,3 +3,4 @@ files/bashrc ~/.bashrc
 files/vimrc ~/.vimrc
 files/editorconfig ~/.editorconfig
 files/ssh_config ~/.ssh/config
+files/karabiner.json ~/.config/karabiner/karabiner.json
