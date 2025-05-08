@@ -1,2 +1,2 @@
 #!/bin/bash
-bash scripts/vim.sh
+bash scripts/50-vim.sh
