@@ -4,3 +4,6 @@ files/vimrc ~/.vimrc
 files/editorconfig ~/.editorconfig
 files/ssh_config ~/.ssh/config
 files/karabiner.json ~/.config/karabiner/karabiner.json
+files/maximize_window.sh ~/.config/karabiner/scripts/maximize_window.sh
+files/restore_window.sh ~/.config/karabiner/scripts/restore_window.sh
+files/cycle_window_thirds.sh ~/.config/karabiner/scripts/cycle_window_thirds.sh

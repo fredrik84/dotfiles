@@ -11,3 +11,7 @@ slack
 spotify
 tunnelblick
 wireshark
+pyenv
+pyenv-virtualenv
+direnv
+yabai
