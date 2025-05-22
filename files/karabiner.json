@@ -4,43 +4,6 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Cycle window thirds and maximize",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_arrow",
-                                    "modifiers": { "mandatory": ["left_gui"] }
-                                },
-                                "to": [{ "shell_command": "/Users/e172511/.config/karabiner/scripts/cycle_window_thirds.sh backward" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "right_arrow",
-                                    "modifiers": { "mandatory": ["left_gui"] }
-                                },
-                                "to": [{ "shell_command": "/Users/e172511/.config/karabiner/scripts/cycle_window_thirds.sh forward" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "up_arrow",
-                                    "modifiers": { "mandatory": ["left_gui"] }
-                                },
-                                "to": [{ "shell_command": "/Users/e172511/.config/karabiner/scripts/maximize_window.sh" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "down_arrow",
-                                    "modifiers": { "mandatory": ["left_gui"] }
-                                },
-                                "to": [{ "shell_command": "/Users/e172511/.config/karabiner/scripts/restore_window.sh" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Swedish keyboard, Right Alt + 7,0 => curly-brackets {}",
                         "manipulators": [
                             {
